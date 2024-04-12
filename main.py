@@ -1,8 +1,18 @@
 import smtplib
+from playwright.sync_api import sync_playwright
 from page_contents import get_html
 
 divs = get_html()
+game_data = []
 
-# Get Game Title
-for i in divs[0:-2]:
-    print(f"{i.html}")
+#GET GAME TITLE
+for d in divs:
+    title = d.css_first("div[class *= 'StoreSaleWidgetTitle']").text()
+
+    data = {
+        "title":title
+    }
+
+    game_data.append(data)
+
+print(game_data)
