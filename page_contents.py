@@ -5,7 +5,7 @@ from time import sleep
 def get_html():
     with sync_playwright() as playwright:
         # SET UP PAGE
-        browser = playwright.chromium.launch(headless=False)
+        browser = playwright.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto("https://store.steampowered.com/specials/")
 
@@ -13,7 +13,6 @@ def get_html():
         page.wait_for_load_state("networkidle")
         page.mouse.wheel(0,4000)
         page.wait_for_selector("div[class *= 'NO-IP'] > div[class *= 'y9MSdl']")
-        print("Got Selector")
         sleep(1)
 
         # GET HTML
